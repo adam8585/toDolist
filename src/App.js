@@ -1,25 +1,79 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
+
+const initialList = [
+
+];
+
+
+function App(props) {
+  const [list, setList] = React.useState(initialList);
+  const [name, setName] = React.useState('');
+
+  function handleChange(event) {
+    setName(event.target.value);
+  }
+
+  function handleAdd() {
+    const newList = list.concat({ name });
+
+    setList(newList);
+  }
+
+  function handleRemove(id) {
+    const newList = list.filter((item) => item.id !== id);
+
+    setList(newList);
+    
+  }
+
+
+  
+
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+
+    <div>
+      
+      <div>
+     
+        <h1> ToDoList </h1>
+        <input type="text" value={name} onChange={handleChange} />
+        <button type="button" onClick={handleAdd}>
+          Add
+        </button>
+const Item = ({ list, onRemove}) => (
+<li>
+
+        <button type="button" onClick={() => handleRemove(item.id)}>
+            Remove
+          </button>
+          </li>
+          
+);
+      </div>
+      const List = ({ list, onRemove }) => (
+  
+
+      <ul>
+        {list.map((item) => (
+          <li key={item.id}>{item.name}</li>
+          
+        ))}
+      </ul>
     </div>
+
+     
+
+
+
+
+
   );
 }
-
 export default App;
